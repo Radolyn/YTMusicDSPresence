@@ -1,0 +1,19 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <OutputType>Exe</OutputType>
+        <TargetFrameworks>net472;netcoreapp3.1</TargetFrameworks>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <PackageReference Include="DiscordRichPresence" Version="1.0.150" />
+      <PackageReference Include="RadLibrary" Version="1.0.9" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Update="proxy.conf">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </None>
+    </ItemGroup>
+
+</Project>
