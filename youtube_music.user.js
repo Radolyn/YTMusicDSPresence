@@ -6,8 +6,8 @@
 // @license      Apache-2.0
 // @match        https://music.youtube.com/*
 // @supportURL   https://github.com/Radolyn/YTMusicDSPresence
-// @updateURL    https://raw.githubusercontent.com/Radolyn/YTMusicDSPresence/master/youtube_music.user.js
-// @downloadURL  https://raw.githubusercontent.com/Radolyn/YTMusicDSPresence/master/youtube_music.user.js
+// @updateURL    https://github.com/Radolyn/YTMusicDSPresence/raw/master/youtube_music.user.js
+// @downloadURL  https://github.com/Radolyn/YTMusicDSPresence/raw/master/youtube_music.user.js
 // @homepage     https://github.com/Radolyn/YTMusicDSPresence
 // @namespace    https://github.com/Radolyn/YTMusicDSPresence
 // @require      https://momentjs.com/downloads/moment.js

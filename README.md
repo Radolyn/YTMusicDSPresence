@@ -8,7 +8,7 @@ You need to install TamperMonkey ([Chrome](https://chrome.google.com/webstore/de
 
 Click to the link and install script:
 
-[youtube_music.user.js](https://raw.githubusercontent.com/Radolyn/YTMusicDSPresence/master/youtube_music.user.js)
+[youtube_music.user.js](https://github.com/Radolyn/YTMusicDSPresence/raw/master/youtube_music.user.js)
 
 Download proxy from [Releases](https://github.com/Radolyn/YTMusicDSPresence/releases) tab
 
