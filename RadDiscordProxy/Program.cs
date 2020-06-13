@@ -4,8 +4,6 @@ using System;
 using System.Diagnostics;
 using System.IO;
 using System.Reflection;
-using System.Runtime.InteropServices;
-using System.Threading;
 using DiscordRPC;
 using RadLibrary;
 using RadLibrary.Logging;
@@ -21,9 +19,11 @@ namespace RadDiscordProxy
         private static void Main(string[] args)
         {
             LogManager.AddExceptionsHandler();
-            
-            Environment.CurrentDirectory = Path.GetDirectoryName(new Uri(Assembly.GetExecutingAssembly().CodeBase).LocalPath) ?? throw new Exception("Failed to set environment directory.");
-            
+
+            Environment.CurrentDirectory =
+                Path.GetDirectoryName(new Uri(Assembly.GetExecutingAssembly().CodeBase).LocalPath) ??
+                throw new Exception("Failed to set environment directory.");
+
             Utilities.OnlyOneInstance("DiscordYTMusicPresence", () =>
             {
                 var current = Process.GetCurrentProcess().ProcessName;
@@ -36,7 +36,8 @@ namespace RadDiscordProxy
                 else
                     pid = processes[0]?.Id ?? 0;
 
-                LogManager.GetLogger<ConsoleLogger>("DiscordPresence").Fatal("The program is already running (PID: {0})", pid);
+                LogManager.GetLogger<ConsoleLogger>("DiscordPresence")
+                    .Fatal("The program is already running (PID: {0})", pid);
                 Console.ReadLine();
             });
 
@@ -50,7 +51,7 @@ namespace RadDiscordProxy
             if (Config.GetBool("enableInviteFeature"))
             {
                 var inviteLogger = LogManager.GetLogger<ConsoleLogger>("InviteFeature");
-                
+
                 client.RegisterUriScheme();
 
                 client.Subscribe(EventType.JoinRequest);

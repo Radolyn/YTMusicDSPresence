@@ -1,7 +1,6 @@
 ﻿#region
 
 using RadLibrary.Configuration;
-using RadLibrary.Logging;
 
 #endregion
 

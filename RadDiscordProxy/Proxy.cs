@@ -27,9 +27,9 @@ namespace RadDiscordProxy
         public static void Start()
         {
             var logger = LogManager.GetClassLogger();
-            
+
             logger.Info("Starting HTTP listener...");
-            
+
             _server = new HttpListener();
 
             _server.Prefixes.Add($"http://localhost:{Config["port"]}/presence/");
@@ -37,18 +37,18 @@ namespace RadDiscordProxy
             _server.Start();
 
             Task.Run(Work);
-            
+
             logger.Info("Ok");
         }
 
         private static async Task Work()
         {
             var classLogger = LogManager.GetClassLogger();
-            
+
             classLogger.Info("Starting worker...");
 
             var logger = LogManager.GetLogger<ConsoleLogger>("Worker");
-            
+
             while (!_stop)
                 try
                 {
@@ -73,7 +73,7 @@ namespace RadDiscordProxy
 
                     data.Artist = data.Artist.Clean().LimitLength(80);
                     data.Song = data.Song.Clean().LimitLength(80);
-                    
+
                     logger.Info(raw);
 
                     SetPresence(data);
