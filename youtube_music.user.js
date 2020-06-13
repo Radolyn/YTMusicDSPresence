@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         YouTubeMusic Transmitter
-// @version      0.1
+// @version      0.3
 // @description  Stream your YouTube Music name & position to Discord
 // @author       Radolyn
 // @license      Apache-2.0
@@ -58,7 +58,7 @@
   function getArtist() {
     return document
       .getElementsByClassName("byline style-scope ytmusic-player-bar")[0]
-      .title.replace("•");
+      .title.replace(" • ", "");
   }
   function getState() {
     var aria = document

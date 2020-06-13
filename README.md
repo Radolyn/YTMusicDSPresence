@@ -39,3 +39,12 @@ hideConsole=false # Hide app console
 ## Bugs
 
 - Works on English only
+
+## Todo
+- [ ] Display metadata for track
+- [ ] Fix pause state for other languages
+- [ ] Party Id
+
+## Icons
+
+Icons made by <a href="https://www.flaticon.com/authors/those-icons" title="Those Icons">Those Icons</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a>
