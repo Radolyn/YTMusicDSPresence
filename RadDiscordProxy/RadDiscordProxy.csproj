@@ -2,12 +2,12 @@
 
     <PropertyGroup>
         <OutputType>Exe</OutputType>
-        <TargetFrameworks>net472;netcoreapp3.1</TargetFrameworks>
+        <TargetFrameworks>net472;net48;netcoreapp3.1</TargetFrameworks>
     </PropertyGroup>
 
     <ItemGroup>
       <PackageReference Include="DiscordRichPresence" Version="1.0.150" />
-      <PackageReference Include="RadLibrary" Version="1.0.9" />
+      <PackageReference Include="RadLibrary" Version="1.2.0" />
     </ItemGroup>
 
     <ItemGroup>

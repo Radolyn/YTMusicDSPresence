@@ -8,6 +8,8 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using DiscordRPC;
+using RadLibrary.Logging;
+using RadLibrary.Logging.Loggers;
 using static RadDiscordProxy.Storage;
 
 #endregion
@@ -24,6 +26,10 @@ namespace RadDiscordProxy
 
         public static void Start()
         {
+            var logger = LogManager.GetClassLogger();
+            
+            logger.Info("Starting HTTP listener...");
+            
             _server = new HttpListener();
 
             _server.Prefixes.Add($"http://localhost:{Config["port"]}/presence/");
@@ -31,10 +37,18 @@ namespace RadDiscordProxy
             _server.Start();
 
             Task.Run(Work);
+            
+            logger.Info("Ok");
         }
 
         private static async Task Work()
         {
+            var classLogger = LogManager.GetClassLogger();
+            
+            classLogger.Info("Starting worker...");
+
+            var logger = LogManager.GetLogger<ConsoleLogger>("Worker");
+            
             while (!_stop)
                 try
                 {
@@ -59,9 +73,8 @@ namespace RadDiscordProxy
 
                     data.Artist = data.Artist.Clean().LimitLength(80);
                     data.Song = data.Song.Clean().LimitLength(80);
-
-                    NLogger.Info("Song: {0}, Artist: {1}, Start: {2}, End: {3}, Paused: {4}, Id: {5}", data.Song,
-                        data.Artist, data.Start, data.End, data.Paused, data.Id);
+                    
+                    logger.Info(raw);
 
                     SetPresence(data);
 
@@ -72,7 +85,7 @@ namespace RadDiscordProxy
                 }
                 catch (Exception e)
                 {
-                    NLogger.Exception(e);
+                    logger.Error(e);
                 }
         }
 
