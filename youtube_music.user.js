@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         YouTubeMusic Transmitter
-// @version      0.4
+// @version      0.5
 // @description  Stream your YouTube Music name & position to Discord
 // @author       Radolyn
 // @license      Apache-2.0
