@@ -69,14 +69,14 @@
     return "play" === aria;
   }
   function getId() {
-    var link = window.location.href;
-    var sliceBefore = function (str, pattern) {
+    var link = document.getElementsByClassName("ytp-title-link yt-uix-sessionlink")[0].href;
+    var sliceAfter = function (str, pattern) {
       return str.slice(str.indexOf(pattern) + pattern.length);
     };
-    var sliceAfter = function (str, pattern) {
+    var sliceBefore = function (str, pattern) {
       return str.slice(0, str.indexOf(pattern));
     };
-    return sliceAfter(sliceBefore(link, "watch?v="), "&list=");
+    return sliceAfter(link, "v=");
   }
   setInterval(function () {
     var song = getSong();
