@@ -43,7 +43,7 @@ hideConsole=false # Hide app console
 ## Todo
 - [ ] Display metadata for track
 - [ ] Fix pause state for other languages
-- [ ] Party Id
+- [x] Party Id
 
 ## Icons
 

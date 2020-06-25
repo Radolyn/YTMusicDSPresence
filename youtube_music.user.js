@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         YouTubeMusic Transmitter
-// @version      0.3
+// @version      0.5
 // @description  Stream your YouTube Music name & position to Discord
 // @author       Radolyn
 // @license      Apache-2.0
@@ -69,14 +69,14 @@
     return "play" === aria;
   }
   function getId() {
-    var link = window.location.href;
-    var sliceBefore = function (str, pattern) {
+    var link = document.getElementsByClassName("meta-url")[0].content;
+    var sliceAfter = function (str, pattern) {
       return str.slice(str.indexOf(pattern) + pattern.length);
     };
-    var sliceAfter = function (str, pattern) {
+    var sliceBefore = function (str, pattern) {
       return str.slice(0, str.indexOf(pattern));
     };
-    return sliceAfter(sliceBefore(link, "watch?v="), "&list=");
+    return sliceBefore(sliceAfter(link, "v="), "&list");
   }
   setInterval(function () {
     var song = getSong();
