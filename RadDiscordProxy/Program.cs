@@ -41,7 +41,9 @@ namespace RadDiscordProxy
                 Console.ReadLine();
             });
 
-            if (Config.GetBool("hideConsole") && Utilities.IsWindows())
+            Config.EnsureScheme(typeof(ConfigScheme));
+
+            if (!Config.GetBool("hideConsole"))
                 Utilities.AllocateConsole();
 
             var client = new DiscordRpcClient(Config["applicationId"]);
