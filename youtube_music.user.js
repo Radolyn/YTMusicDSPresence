@@ -69,7 +69,7 @@
     return "play" === aria;
   }
   function getId() {
-    var link = document.getElementsByClassName("meta-url")[0].content;
+    var link = document.getElementsByClassName("ytp-title-link yt-uix-sessionlink")[0].href;
     var sliceAfter = function (str, pattern) {
       return str.slice(str.indexOf(pattern) + pattern.length);
     };
