@@ -71,8 +71,8 @@ namespace RadDiscordProxy
 
                     var data = Data.FromJson(raw);
 
-                    data.Artist = data.Artist.Clean().LimitLength(80);
-                    data.Song = data.Song.Clean().LimitLength(80);
+                    data.Artist = data.Artist.LimitLength(90);
+                    data.Song = data.Song.LimitLength(90);
 
                     logger.Info(raw);
 
@@ -130,16 +130,6 @@ namespace RadDiscordProxy
                 };
 
             Client.SetPresence(activity);
-        }
-
-        private static string Clean(this string str)
-        {
-            var sb = new StringBuilder();
-            foreach (var c in str.Where(c =>
-                c >= '0' && c <= '9' || c >= 'A' && c <= 'Z' || c >= 'a' && c <= 'z' || c == '.' || c == '_' ||
-                c == '-' || c == ' ' || c == '[' || c == ']' || c == '(' || c == ')' || c == '&')) sb.Append(c);
-
-            return sb.ToString();
         }
 
         public static string LimitLength(this string source, int maxLength)
