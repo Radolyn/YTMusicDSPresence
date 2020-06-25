@@ -58,7 +58,7 @@
   function getArtist() {
     return document
       .getElementsByClassName("byline style-scope ytmusic-player-bar")[0]
-      .title.replace(" • ", "");
+      .title
   }
   function getState() {
     var aria = document
