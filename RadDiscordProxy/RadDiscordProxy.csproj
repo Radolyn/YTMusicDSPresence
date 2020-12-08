@@ -6,7 +6,7 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <PackageReference Include="DiscordRichPresence" Version="1.0.150" />
+      <PackageReference Include="DiscordRichPresence" Version="1.0.169" />
       <PackageReference Include="RadLibrary" Version="1.4.2" />
     </ItemGroup>
 
