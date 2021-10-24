@@ -56,7 +56,7 @@ namespace RadDiscordProxy
 
                     Task.Run(() =>
                     {
-                        Thread.Sleep(Config.GetInteger("timeout"));
+                        Thread.Sleep(Config["timeout"].ValueAs<int>());
                         if (!token.IsCancellationRequested)
                             Client.ClearPresence();
                     }, token.Token);
@@ -100,13 +100,13 @@ namespace RadDiscordProxy
             var activity = new RichPresence
             {
                 State = data.Paused ? null : data.Song + " by " + data.Artist,
-                Details = data.Paused ? Config["pausedText"] : Config["playingText"],
+                Details = data.Paused ? Config["pausedText"].Value : Config["playingText"].Value,
                 Assets = new Assets
                 {
-                    LargeImageKey = Config["largeImageKey"],
-                    LargeImageText = Config["largeImageText"],
-                    SmallImageKey = data.Paused ? Config["paused"] : Config["playing"],
-                    SmallImageText = data.Paused ? Config["pausedText"] : Config["playingText"]
+                    LargeImageKey = Config["largeImageKey"].Value,
+                    LargeImageText = Config["largeImageText"].Value,
+                    SmallImageKey = data.Paused ? Config["paused"].Value : Config["playing"].Value,
+                    SmallImageText = data.Paused ? Config["pausedText"].Value : Config["playingText"].Value
                 },
                 Party = new Party
                 {
@@ -123,7 +123,7 @@ namespace RadDiscordProxy
                     EndUnixMilliseconds = data.End
                 };
 
-            if (!data.Paused && Config.GetBool("enableInviteFeature"))
+            if (!data.Paused && Config["enableInviteFeature"].ValueAs<bool>())
                 activity.Secrets = new Secrets
                 {
                     JoinSecret = data.Id
@@ -132,7 +132,7 @@ namespace RadDiscordProxy
             Client.SetPresence(activity);
         }
 
-        public static string LimitLength(this string source, int maxLength)
+        private static string LimitLength(this string source, int maxLength)
         {
             if (source.Length <= maxLength) return source;
 

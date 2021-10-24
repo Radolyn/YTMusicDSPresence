@@ -4,6 +4,7 @@ using System;
 using System.Diagnostics;
 using System.IO;
 using System.Reflection;
+using System.Threading;
 using DiscordRPC;
 using RadLibrary;
 using RadLibrary.Logging;
@@ -24,7 +25,7 @@ namespace RadDiscordProxy
                 Path.GetDirectoryName(new Uri(Assembly.GetExecutingAssembly().CodeBase).LocalPath) ??
                 throw new Exception("Failed to set environment directory.");
 
-            Utilities.OnlyOneInstance("DiscordYTMusicPresence", () =>
+            RadUtilities.OnlyOneInstance("DiscordYTMusicPresence", () =>
             {
                 var current = Process.GetCurrentProcess().ProcessName;
                 var processes = Process.GetProcessesByName(current);
@@ -43,14 +44,14 @@ namespace RadDiscordProxy
 
             Config.EnsureScheme(typeof(ConfigScheme));
 
-            if (!Config.GetBool("hideConsole"))
-                Utilities.AllocateConsole();
+            if (!Config["hideConsole"].ValueAs<bool>())
+                RadUtilities.AllocateConsole();
 
-            var client = new DiscordRpcClient(Config["applicationId"]);
+            var client = new DiscordRpcClient(Config["applicationId"].Value);
 
             client.Initialize();
 
-            if (Config.GetBool("enableInviteFeature"))
+            if (Config["enableInviteFeature"].ValueAs<bool>())
             {
                 var inviteLogger = LogManager.GetLogger<ConsoleLogger>("InviteFeature");
 
@@ -63,7 +64,7 @@ namespace RadDiscordProxy
                 {
                     inviteLogger.Warn("Join requested");
 
-                    if (!Config.GetBool("enableJoinRequestSounds"))
+                    if (!Config["enableJoinRequestSounds"].ValueAs<bool>())
                         return;
 
                     Console.Beep(1000, 100);
@@ -75,7 +76,7 @@ namespace RadDiscordProxy
                     var url = "https://music.youtube.com/watch?v=" + message.Secret;
                     inviteLogger.Warn($"Joined {url}");
 
-                    if (Config.GetBool("enableAutoUrlOpen"))
+                    if (Config["enableAutoUrlOpen"].ValueAs<bool>())
                     {
                         // process.start won't work on .net core 3
                         var psi = new ProcessStartInfo
@@ -104,7 +105,7 @@ namespace RadDiscordProxy
                 Proxy.Stop();
             };
 
-            Utilities.InfiniteWait();
+            Thread.Sleep(-1);
         }
     }
 }
